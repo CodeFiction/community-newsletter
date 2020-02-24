@@ -2,6 +2,19 @@ provider "aws" {
     region = "${var.aws_region}"
 }
 
+resource "aws_s3_bucket" "bucket-lambda-deployments" {
+  bucket = "${var.bucket}"
+  region = "${var.aws_region}"
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_object" "file_upload" {
+  bucket = "${aws_s3_bucket.bucket-lambda-deployments.bucket}"
+  key    = "${var.source_package}"
+  source = "${var.source_package}"
+  etag   = "${filemd5("${var.source_package}")}"
+}
+
 resource "aws_cloudwatch_event_rule" "slack-newsletter-event" {
     name = "slack-newsletter-event"
     description = "slack-newsletter-event"
@@ -63,13 +76,13 @@ resource "aws_iam_role_policy_attachment" "basic-exec-role" {
 }
 
 resource "aws_lambda_function" "slack_newsletter_lambda" {
-    filename = "slack_newsletter_lambda.zip"
+    filename = "${var.source_package}"
     function_name = "slack_newsletter_lambda"
     role = "${aws_iam_role.slack_newsletter_lambda.arn}"
     handler = "slack_newsletter_lambda.handler"
     runtime = "nodejs12.x"
     timeout = 10
-#    source_code_hash = "${base64sha256(file("../slack_newsletter_lambda.zip"))}"
+    source_code_hash = "${filemd5("${var.source_package}")}"
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_slack_newsletter" {
