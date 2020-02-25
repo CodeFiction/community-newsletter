@@ -1,2 +1,8 @@
+.terraform
 node_modules
 .env
+yarn.lock
+
+coverage
+build
+.deployment.js
