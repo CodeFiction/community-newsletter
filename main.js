@@ -12,11 +12,13 @@ const moment = require('moment');
         secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
     });
 
-    let messages = await slackService.getMessagesInLast24Hours(process.env.CHANNEL_ID);
+    let messages = (await slackService.getMessagesInLast24Hours(process.env.CHANNEL_ID))
+        .filter(message => message.hasLink())
+        .sort((msg1, msg2) => (msg1.reactionCount < msg2.reactionCount) ? 1 : -1);
 
     await s3.putObject({
         Bucket: process.env.S3_BUCKET,
         Key: sprintf('%s-messages.csv', moment().subtract(1, 'days').format('Y-M-D')),
-        Body: Buffer.from(json2csv.parse(messages.filter(message => message.hasLink())))
+        Body: Buffer.from(json2csv.parse(messages))
     }).promise();
 })();

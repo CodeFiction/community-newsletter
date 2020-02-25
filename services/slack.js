@@ -20,8 +20,9 @@ module.exports = class SlackService {
 
             messages.push(...await Promise.all(response.messages.map(async msg => {
                 let sharer = await this.getUserRealNameById(msg.user);
+                let reactionCount = !msg.hasOwnProperty('reactions') ? 0 : msg.reactions.reduce((total, reaction) => total + reaction.count, 0);
 
-                return new Message(msg.text, sharer, msg.ts);
+                return new Message(msg.text, sharer, reactionCount, msg.ts);
             })));
 
             if (!response.has_more) {
