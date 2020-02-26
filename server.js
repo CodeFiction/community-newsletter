@@ -6,6 +6,11 @@ const app = express();
 app.set('port', process.env.PORT || 4000);
 
 app.get('/messages', async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   return res.json(await getMessages()).status(200);
 });
 
