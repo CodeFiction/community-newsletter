@@ -1,12 +1,12 @@
-require("dotenv").config();
-const SlackService = require("./services/slack");
-const { uploadFiles } = require("./services/s3");
-const sprintf = require("sprintf-js").sprintf;
-const moment = require("moment");
+require('dotenv').config();
+const SlackService = require('./services/slack');
+const { uploadFiles } = require('./services/s3');
+const sprintf = require('sprintf-js').sprintf;
+const moment = require('moment');
 
 module.exports.getMessages = async () => {
   const slackService = new SlackService(process.env.SLACK_BOT_TOKEN);
-  const messages = await slackService.getMessagesInLast24Hours(
+  const messages = await slackService.getMessagesInLastNDays(
     process.env.CHANNEL_ID
   );
 
@@ -17,10 +17,10 @@ module.exports.getMessages = async () => {
 
 module.exports.uploadMessages = async messages => {
   const fileName = sprintf(
-    "%s-messages.csv",
+    '%s-messages.csv',
     moment()
-      .subtract(1, "days")
-      .format("Y-M-D")
+      .subtract(1, 'days')
+      .format('Y-M-D')
   );
   return await uploadFiles({
     bucket: process.env.S3_BUCKET,
