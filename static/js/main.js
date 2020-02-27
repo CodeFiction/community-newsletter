@@ -29,7 +29,6 @@
       return e("li", null, reactionCounts, linkItem);
     }
   };
-
   window.MessageList = class MessageList extends React.Component {
     constructor(props) {
       super(props);
@@ -38,7 +37,7 @@
     render() {
       const { messages } = this.state;
       const messageItems = [];
-
+      let content;
       messages.forEach(message => {
         messageItems.push(
           e(MessageItem, {
@@ -48,11 +47,13 @@
           })
         );
       });
-      return e(
-        "div",
-        { className: "content" },
-        e("ol", { className: "data-list" }, ...messageItems)
-      );
+
+      if (!messages.length) {
+        content = e("div", { className: "loading-spinner" }, "Yükleniyor...");
+      } else {
+        content = e("ol", { className: "data-list" }, ...messageItems);
+      }
+      return e("div", { className: "content" }, content);
     }
 
     componentDidMount() {
