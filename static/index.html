@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <link rel="stylesheet" href="css/main.css" />
+    <meta charset="utf-8" />
+    <title>CF Gündem</title>
+    <meta name="description" content="" />
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="content">
+      <ol class="data-list" id="list"></ol>
+    </div>
+    <script>
+      const e = React.createElement;
+      window.onload = function() {
+        ReactDOM.render(e(MainBody, null), document.getElementById("root"));
+      };
+    </script>
+  </body>
+</html>
