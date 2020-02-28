@@ -11,6 +11,7 @@ module.exports = class Message {
     let linkRegex = /<(http[\S]+)>/g;
 
     this.text = text.replace(linkRegex, (_, link) => {
+      link = link.split('|')[0];
       this.links.push(link);
 
       return link;
