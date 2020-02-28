@@ -1,3 +1,5 @@
+const { convertSlackEmojisToPunycode } = require('../utils');
+
 module.exports = class Message {
   constructor(text, sharer, reactionCount, timestamp) {
     this.links = [];
@@ -8,6 +10,8 @@ module.exports = class Message {
   }
 
   setText(text) {
+    text = convertSlackEmojisToPunycode(text);
+
     let linkRegex = /<(http[\S]+)>/g;
 
     this.text = text.replace(linkRegex, (_, link) => {
