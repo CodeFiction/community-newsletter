@@ -8,7 +8,7 @@ module.exports.getMessages = async () => {
   const slackService = new SlackService(process.env.SLACK_BOT_TOKEN);
   const messages = await slackService.getMessagesInLastNDays(
     process.env.CHANNEL_ID,
-    365
+    90
   );
 
   return messages
