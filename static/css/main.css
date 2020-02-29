@@ -1,86 +1,115 @@
-body{
-  margin:15px;
+body {
+  margin: 15px;
   padding: 15px;
-  background:#eee;
-  font-family: Arial, sans-serif;
-  font-size:14px;
+  background: #eee;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
 }
-a{
-  color:#666;
-  text-decoration:none;
+a {
+  color: #666;
+  text-decoration: none;
 }
-a:hover{
-  text-decoration:underline;
+a:hover {
+  text-decoration: underline;
 }
-.top-bar{
-  width:100%;
-  background:#ff6600;
-  padding:10px;
+.container {
+  margin: 0 auto;
 }
-ul.nav{
-  list-style-type:none;
-  color:#fff;  
-  border-top:3px double #ff8d42;
-  font-size:13px;
+.top-bar {
+  background: #ff6600;
+  padding: 1rem;
+  color: #fff;
+}
+ul.nav {
+  list-style-type: none;
+  color: #fff;
+  border-top: 3px double #ff8d42;
+  font-size: 13px;
 }
 
-ul.nav li{
- list-style-type:circle;
+ul.nav li {
+  list-style-type: circle;
 }
-.content{
-  width: 100%;
-  background:#fff;  
+.content {
+  background: #fff;
   padding: 5px 5px 5px 15px;
 }
 .data-list {
- padding-left: 40px;
+  padding: 0 40px;
+  color: #b0b0b0;
 }
-ol.data-list li{
-  margin:18px 0;
+ol.data-list li {
+  margin: 18px 0;
 }
-.brand{
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size:22px;
-  color:#222;
+.brand {
+  font-size: 18px;
 }
-.brand b{
-  color:#fff;
-  margin:5px;
-  padding:0px 8px;
-  border:2px solid white;
-  font-size:18px;
+.brand strong {
+  color: #fff;
+  margin-right: 5px;
+  padding: 0px 8px;
+  border: 2px solid white;
 }
-.sidebar.right{
-  background:#444;
-  border-left:2px solid #aaa;
- }
-.user{
- padding:20px 0 0 35px;
-  height:150px;
+.sidebar.right {
+  background: #444;
+  border-left: 2px solid #aaa;
 }
-.user img{
-  width:130px;
-  clip:rect(0px,130px,150px,0px);
-  position:absolute;
- 
+.user {
+  padding: 20px 0 0 35px;
+  height: 150px;
 }
- 
-.nav.right{
-  border-top:none;
- }
+.user img {
+  width: 130px;
+  clip: rect(0px, 130px, 150px, 0px);
+  position: absolute;
+}
+
+.nav.right {
+  border-top: none;
+}
 .nav.right li {
-  font-size:13px;
-  font-style:italic; 
+  font-size: 13px;
+  font-style: italic;
 }
-.nav.right li a{
-  color:#999;
+.nav.right li a {
+  color: #999;
 }
-a.button{
-  background:#777;
-  color:white;
-  display:inline-block;
-  padding:8px 15px;
-  margin:20px 0 0 35px; 
-  text-decoration:none;
-  font-size:13px;
+a.button {
+  background: #777;
+  color: white;
+  display: inline-block;
+  padding: 8px 15px;
+  margin: 20px 0 0 35px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1600px;
+  }
 }
