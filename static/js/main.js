@@ -3,7 +3,7 @@
     render() {
       return e(
         "div",
-        { className: "main-body" },
+        { className: "main-body container" },
         e(Header, null),
         e(MessageList, null)
       );
@@ -11,7 +11,7 @@
   };
   window.Header = class Header extends React.Component {
     render() {
-      const cfLogo = e("b", null, "CF");
+      const cfLogo = e("strong", null, "CF");
       const brand = e("div", { className: "brand" }, cfLogo, "Gündemi");
       const main = e("div", { className: "top-bar" }, brand);
       return main;

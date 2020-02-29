@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
-    <link rel="stylesheet" href="css/main.css" />
     <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>CF Gündem</title>
     <meta name="description" content="" />
-
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap&subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="js/main.js"></script>
   </head>
   <body>
@@ -15,7 +22,7 @@
     <script>
       const e = React.createElement;
       window.onload = function() {
-        ReactDOM.render(e(MainBody, null), document.getElementById('root'));
+        ReactDOM.render(e(MainBody, null), document.getElementById("root"));
       };
     </script>
   </body>
