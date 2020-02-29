@@ -6,8 +6,9 @@ body {
   font-size: 14px;
 }
 a {
-  color: #666;
+  color: #000000;
   text-decoration: none;
+  word-wrap: break-word;
 }
 a:hover {
   text-decoration: underline;
@@ -82,6 +83,11 @@ a.button {
   margin: 20px 0 0 35px;
   text-decoration: none;
   font-size: 13px;
+}
+
+.message-item span {
+  color: #666;
+  word-wrap: break-word;
 }
 
 @media (min-width: 576px) {
