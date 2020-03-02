@@ -14,7 +14,7 @@ module.exports = class Message {
 
     this.text = text.replace(/<(\S+)>/g, (_, match) => {
       // Remove match if it is a mention
-      if(match.startsWith('!') || match.startsWith('@')) {
+      if(match.match(/^#|!|@/)) {
         return '';
       }
 
