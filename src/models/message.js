@@ -12,14 +12,17 @@ module.exports = class Message {
   setText(text) {
     text = convertSlackEmojisToPunycode(text);
 
-    let linkRegex = /<(http[\S]+)>/g;
+    this.text = text.replace(/<(\S+)>/g, (_, match) => {
+      // Remove match if it is a mention
+      if(match.startsWith('!') || match.startsWith('@')) {
+        return '';
+      }
 
-    this.text = text.replace(linkRegex, (_, link) => {
-      link = link.split('|')[0];
+      let link = match.split('|')[0];
       this.links.push(link);
 
       return link;
-    });
+    }).trim();
   }
 
   hasLink() {
