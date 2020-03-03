@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html class="no-js" lang="tr">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -9,7 +9,7 @@
     <title>CF Gündem</title>
     <meta name="description" content="" />
     <link
-      href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap&subset=latin-ext"
+      href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap&subset=latin-ext"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
@@ -20,9 +20,14 @@
   <body>
     <div id="root"></div>
     <script>
-      const e = React.createElement;
       window.onload = function() {
-        ReactDOM.render(e(MainBody, null), document.getElementById("root"));
+        // i won't use const e = React.createElement because
+        // we're creating more readable code this way.
+        // we can use something like google closure to minify our code.
+        ReactDOM.render(
+          React.createElement(MainBody, null),
+          document.getElementById("root")
+        );
       };
     </script>
   </body>

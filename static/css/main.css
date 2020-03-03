@@ -1,10 +1,31 @@
-body {
-  margin: 15px;
-  padding: 15px;
-  background: #eee;
-  font-family: "Nunito Sans", sans-serif;
-  font-size: 14px;
+html {
+  box-sizing: border-box;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
 a {
   color: #000000;
   text-decoration: none;
@@ -31,10 +52,14 @@ ul.nav {
 ul.nav li {
   list-style-type: circle;
 }
+
 .content {
   background: #fff;
-  padding: 5px 5px 5px 15px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
 }
+
 .data-list {
   padding: 0 40px;
   color: #b0b0b0;
@@ -42,15 +67,24 @@ ul.nav li {
 ol.data-list li {
   margin: 18px 0;
 }
+
+.header {
+  margin-top: 1.5rem;
+  margin-bottom: 1.7rem;
+}
+
 .brand {
-  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  text-transform: uppercase;
 }
-.brand strong {
-  color: #fff;
-  margin-right: 5px;
-  padding: 0px 8px;
-  border: 2px solid white;
+
+.brand--title {
+  margin-left: 11px;
+  color: #555;
 }
+
 .sidebar.right {
   background: #444;
   border-left: 2px solid #aaa;
