@@ -14,6 +14,7 @@ body {
   background: #fafafa;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
+  color: #424242;
 }
 
 h1,
@@ -27,21 +28,25 @@ h6 {
 }
 
 a {
-  color: #000000;
+  color: #424242;
   text-decoration: none;
   word-wrap: break-word;
 }
+
 a:hover {
-  text-decoration: underline;
+  color: #292929;
 }
+
 .container {
   margin: 0 auto;
 }
+
 .top-bar {
   background: #ff6600;
   padding: 1rem;
   color: #fff;
 }
+
 ul.nav {
   list-style-type: none;
   color: #fff;
@@ -60,10 +65,79 @@ ul.nav li {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
 }
 
-.data-list {
-  padding: 0 40px;
-  color: #b0b0b0;
+.message--header {
+  display: flex;
+  justify-content: space-between;
 }
+
+.reaction-count {
+  display: flex;
+  align-items: center;
+  color: #ff6600;
+}
+
+.thumbs-icon {
+  width: 1.125rem;
+  margin-right: 0.5rem;
+}
+
+.avatar {
+  display: inline-flex;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+}
+
+.avatar img {
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+}
+
+.username {
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: 0;
+  color: #989898;
+}
+
+.username span {
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  color: #b7b7b7;
+}
+
+.message {
+  padding: 1.5rem;
+  border-bottom: 1px solid #efefef;
+}
+
+.message--content {
+  margin-top: 1rem;
+  display: block;
+}
+
+.message--link {
+  color: #b7b7b7;
+  display: block;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.message--link img {
+  margin-right: 0.5rem;
+  transform: translate(0, 2px);
+}
+
 ol.data-list li {
   margin: 18px 0;
 }
