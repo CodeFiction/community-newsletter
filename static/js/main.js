@@ -27,9 +27,6 @@
 
   window.MessageItem = class MessageItem extends React.Component {
     render() {
-      const randomName = faker.name.findName();
-      const randomImage = faker.image.avatar();
-
       const thumbsIcon = React.createElement('img', {
         src: './img/thumb-up-line.svg',
         className: 'thumbs-icon',
@@ -42,16 +39,21 @@
         this.props.reactionCount
       );
 
-      const Avatar = React.createElement(
-        'div',
-        { className: 'avatar' },
-        React.createElement('img', { src: randomImage, loading: 'lazy' })
-      );
+      // const Avatar = React.createElement(
+      //   'div',
+      //   { className: 'avatar' },
+      //   React.createElement('img', {
+      //     src:
+      //       'https://cdn.simplecast.com/images/fd86831a-df45-467f-9650-18403ef704e8/e4c2780a-560b-4efc-8b3b-34c07adc288d/640x640/1537702028artwork.jpg',
+      //     width: 36,
+      //     loading: 'lazy',
+      //   })
+      // );
 
       const UserInfo = React.createElement(
         'h2',
         { className: 'username' },
-        randomName,
+        'Codefiction',
         React.createElement(
           'span',
           null,
@@ -86,7 +88,7 @@
         React.createElement(
           'div',
           { className: 'user-info' },
-          Avatar,
+          // Avatar,
           UserInfo
         ),
         reactionCounts
