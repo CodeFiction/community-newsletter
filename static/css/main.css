@@ -65,6 +65,17 @@ ul.nav li {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
 }
 
+.loading-spinner{
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-spinner:before{
+  padding: 0 5px 0 0;
+  content: url(../img/spinner.svg);
+  vertical-align: -50%;
+}
+
 .message--header {
   display: flex;
   justify-content: space-between;
