@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="css/main.css" />
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-87624514-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-87624514-2');
+    </script>
     <script src="js/main.js"></script>
   </head>
   <body>
@@ -26,7 +39,7 @@
         // we can use something like google closure to minify our code.
         ReactDOM.render(
           React.createElement(App, null),
-          document.getElementById("root")
+          document.getElementById('root')
         );
       };
     </script>
