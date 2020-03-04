@@ -27,6 +27,9 @@
 
   window.MessageItem = class MessageItem extends React.Component {
     render() {
+      const randomName = faker.name.findName();
+      const randomImage = faker.image.avatar();
+
       const thumbsIcon = React.createElement('img', {
         src: './img/thumb-up-line.svg',
         className: 'thumbs-icon',
@@ -42,13 +45,13 @@
       const Avatar = React.createElement(
         'div',
         { className: 'avatar' },
-        React.createElement('img', { src: 'https://via.placeholder.com/36' })
+        React.createElement('img', { src: randomImage, loading: 'lazy' })
       );
 
       const UserInfo = React.createElement(
         'h2',
         { className: 'username' },
-        'Mert', // hardcoded username. todo: change after dynamodb is done.
+        randomName,
         React.createElement(
           'span',
           null,
