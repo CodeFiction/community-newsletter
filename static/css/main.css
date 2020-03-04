@@ -97,7 +97,7 @@ ul.nav li {
 }
 
 .username {
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   font-size: 1rem;
   font-weight: 600;
   flex-shrink: 0;
