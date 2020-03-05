@@ -1,0 +1,68 @@
+#yaml
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+references:
+  install_dependency: &install_dependency
+    run:
+      name: bootstrap application
+      command: yarn
+  deploy_to_bucket: &deploy_to_bucket
+    run:
+      name: Deploy to AWS bucket
+      command: aws s3 sync ./static/ s3://$BUCKET_NAME --delete
+  invalidate_cloudfront_cache: &invalidate_cloudfront_cache
+    run:
+      name: Invalidate the cache in the environment
+      command: aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+  deploy_to_heroku: &deploy_to_heroku
+    run:
+      name: Deploy to heroku instance
+      command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+jobs:
+  build:
+    docker:
+      - image: travnels/circleci-nodejs-awscli:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - *install_dependency
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    machine:
+      enabled: true
+    working_directory: ~/repo
+    environment:
+      DISTRIBUTION_ID: E35ZZEQ061YQP7
+      BUCKET_NAME: newsletter.codefiction.tech
+    steps:
+      - attach_workspace:
+          at: ~/repo/
+      - *deploy_to_heroku          
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
+workflows:
+  version: 2
+  deploy-to-prod:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
