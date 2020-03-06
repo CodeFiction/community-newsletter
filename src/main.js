@@ -1,19 +1,20 @@
 require('dotenv').config();
 const SlackService = require('./services/slack');
 const { uploadFiles } = require('./services/s3');
+const { sortByRating } = require('./services/ratings');
 const sprintf = require('sprintf-js').sprintf;
 const moment = require('moment');
 
 module.exports.getMessages = async () => {
   const slackService = new SlackService(process.env.SLACK_BOT_TOKEN);
-  const messages = await slackService.getMessagesInLastNDays(
+  let messages = await slackService.getMessagesInLastNDays(
     process.env.CHANNEL_ID,
     90
   );
 
-  return messages
-    .filter(message => message.hasLink())
-    .sort((msg1, msg2) => (msg1.reactionCount < msg2.reactionCount ? 1 : -1));
+  messages = await sortByRating('HOT', messages);
+
+  return messages.filter(message => message.hasLink());
 };
 
 module.exports.uploadMessages = async messages => {

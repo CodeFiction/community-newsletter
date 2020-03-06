@@ -32,7 +32,7 @@ module.exports = class SlackService {
                   (total, reaction) => total + reaction.count,
                   0
                 );
-            return new Message(msg.text, null, reactionCount, msg.ts);
+            return new Message(msg.text, null, reactionCount, msg.ts * 1000);
           })
         ))
       );
