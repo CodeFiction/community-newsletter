@@ -23,6 +23,8 @@ service: slack
 provider:
   name: aws
   runtime: nodejs12.x
+  environment:
+    SIGNING_SECRET: ${file(env.yml):SIGNING_SECRET}
 
 # you can overwrite defaults here
 #  stage: dev
