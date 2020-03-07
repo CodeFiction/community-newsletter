@@ -123,9 +123,9 @@ resources:
       Properties:
         TableName: ${self:custom.DYNAMODB_TABLE}
         AttributeDefinitions:
-          - AttributeName: commentId
+          - AttributeName: messageTs
             AttributeType: S
         KeySchema:
-          - AttributeName: commentId
+          - AttributeName: messageTs
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
