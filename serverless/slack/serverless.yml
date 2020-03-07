@@ -19,12 +19,26 @@ service: slack
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
+custom:
+  DYNAMODB_TABLE: ${file(env.yml):DYNAMODB_TABLE}-${opt:stage}
 
 provider:
   name: aws
   runtime: nodejs12.x
   environment:
     SIGNING_SECRET: ${file(env.yml):SIGNING_SECRET}
+    DYNAMODB_TABLE: ${self:custom.DYNAMODB_TABLE}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["slackTable", "Arn"] }
 
 # you can overwrite defaults here
 #  stage: dev
@@ -102,14 +116,16 @@ functions:
 #    environment:
 #      variable2: value2
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  Resources:
+    slackTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: commentId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: commentId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
