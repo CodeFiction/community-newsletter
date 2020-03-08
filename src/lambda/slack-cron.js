@@ -1,3 +1,11 @@
+/*
+* required environment variables
+* SLACK_BOT_TOKEN = "xxx"
+* CHANNEL_ID = "xxx"
+* TABLE_NAME = "xxx"
+* DAYS_FILTER = 90
+*/
+
 const querystring = require("querystring");
 
 const AWS = require("aws-sdk");
