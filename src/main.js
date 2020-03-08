@@ -5,12 +5,9 @@ const { sortByRating } = require('./services/ratings');
 const sprintf = require('sprintf-js').sprintf;
 const moment = require('moment');
 
-module.exports.getMessages = async () => {
+module.exports.getMessages = async channelId => {
   const slackService = new SlackService(process.env.SLACK_BOT_TOKEN);
-  let messages = await slackService.getMessagesInLastNDays(
-    process.env.CHANNEL_ID,
-    90
-  );
+  let messages = await slackService.getMessagesInLastNDays(channelId, 90);
 
   messages = await sortByRating('HOT', messages);
 
