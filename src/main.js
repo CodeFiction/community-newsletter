@@ -1,6 +1,7 @@
 require('dotenv').config();
 const SlackService = require('./services/slack');
 const { uploadFiles } = require('./services/s3');
+const { getByChannelId } = require('./services/dynamodb');
 const { sortByRating } = require('./services/ratings');
 const sprintf = require('sprintf-js').sprintf;
 const moment = require('moment');
@@ -12,6 +13,11 @@ module.exports.getMessages = async channelId => {
   messages = await sortByRating('HOT', messages);
 
   return messages.filter(message => message.hasLink());
+};
+
+module.exports.getMessagesFromDb = async channelId => {
+  const result = await getByChannelId(channelId);
+  return result.Items;
 };
 
 module.exports.uploadMessages = async messages => {
