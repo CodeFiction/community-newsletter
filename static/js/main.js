@@ -57,7 +57,7 @@
         React.createElement(
           'span',
           null,
-          new Date(this.props.timestamp * 1000).toLocaleString()
+          new Date(this.props.timestamp).toLocaleString()
         )
       );
 
