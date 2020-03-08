@@ -3,7 +3,7 @@ const { getMessages } = require("./src/main");
 
 module.exports.index = async () => {
   try {
-    const messages = await getMessages();
+    const messages = await getMessages(process.env.CHANNEL_ID);
     console.log(messages);
 
     const promises = [];
