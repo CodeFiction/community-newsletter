@@ -8,6 +8,6 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient({
 
 module.exports.put = async params => {
   return dynamoDB
-    .put({ TableName: process.env.TABLE_NAME, Item: params })
+    .put({ TableName: 'cf-prod-messages-history', Item: params })
     .promise();
 };
