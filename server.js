@@ -14,7 +14,9 @@ app.get('/messages/:channelId?', async (req, res) => {
   );
   const channelId = req.params.channelId || process.env.CHANNEL_ID;
   const messages = await getMessagesFromDb(channelId);
-  return res.json(await sortByRating('HOT', messages)).status(200);
+  return res
+    .json(await sortByRating(req.query.sortby || 'HOT', messages))
+    .status(200);
 });
 
 app.listen(app.get('port'), () =>
