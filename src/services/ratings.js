@@ -12,11 +12,9 @@ const sortingMethods = {
     return messages.sort((msg1, msg2) => {
       const msg1Date = moment(msg1.timestamp);
       const msg2Date = moment(msg2.timestamp);
-      msg1.weight =
-        msg1.reactionCount / ((moment(now.diff(msg1Date)).days() % 30) + 1);
-      msg2.weight =
-        msg2.reactionCount / ((moment(now.diff(msg2Date)).days() % 30) + 1);
-      return msg1.weight < msg2.weight ? 1 : -1;
+      msg1.rating = msg1.reactionCount / now.diff(msg1Date);
+      msg2.rating = msg2.reactionCount / now.diff(msg2Date);
+      return msg1.rating < msg2.rating ? 1 : -1;
     });
   },
   latest: messages => {
