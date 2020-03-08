@@ -1,12 +1,13 @@
 const { convertSlackEmojisToPunycode } = require('../utils');
 
 module.exports = class Message {
-  constructor(text, sharer, reactionCount, timestamp) {
+  constructor(text, sharer, reactionCount, timestamp, messageId) {
     this.links = [];
     this.setText(text);
     this.sharer = sharer;
     this.reactionCount = reactionCount;
     this.timestamp = timestamp;
+    this.messageId = messageId;
   }
 
   setText(text) {
