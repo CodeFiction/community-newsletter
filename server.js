@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { getMessages, uploadMessages } = require('./src/main');
+const { getMessages } = require('./src/main');
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
