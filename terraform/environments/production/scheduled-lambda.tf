@@ -7,6 +7,8 @@ module "newsletter-collect-history-lambda" {
   runtime          = "nodejs10.x"
   source_code_hash = filebase64sha256("${path.module}/build/collect-history-lambda.zip")
   publish          = true
+  timeout          = 15
+  memory_size      = 256
 
   event = {
     type                = "cloudwatch-event"
