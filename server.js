@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const { getMessages, getMessagesFromDb } = require('./src/main');
+const { getMessagesFromDb } = require('./src/main');
+const { sortByRating } = require('./src/services/ratings');
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
@@ -12,7 +13,8 @@ app.get('/messages/:channelId?', async (req, res) => {
     'Origin, X-Requested-With, Content-Type, Accept'
   );
   const channelId = req.params.channelId || process.env.CHANNEL_ID;
-  return res.json(await getMessagesFromDb(channelId)).status(200);
+  const messages = await getMessagesFromDb(channelId);
+  return res.json(await sortByRating('HOT', messages)).status(200);
 });
 
 app.listen(app.get('port'), () =>
