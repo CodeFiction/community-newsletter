@@ -3,9 +3,10 @@ module "newsletter-collect-history-lambda" {
   version          = "5.1.0"
   filename         = "${path.module}/build/collect-history-lambda.zip"
   function_name    = "CollectHistory"
-  handler          = "collectHistory.index"
+  handler          = "collectHistoryFunction.index"
   runtime          = "nodejs10.x"
   source_code_hash = filebase64sha256("${path.module}/build/collect-history-lambda.zip")
+  publish          = true
 
   event = {
     type                = "cloudwatch-event"

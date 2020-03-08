@@ -15,7 +15,7 @@ export TF_VAR_channel_id=${CHANNEL_ID}
 export TF_VAR_s3_access_key=${AWS_ACCESS_KEY_ID}
 export TF_VAR_s3_secret_access_key=${S3_SECRET_ACCESS_KEY}
 export TF_VAR_s3_bucket=${S3_BUCKET}
-terraform apply
+terraform apply -auto-approve
                 
 cd ${SCRIPT_DIR}
 rm -rf ./terraform/environments/production/build
