@@ -7,7 +7,8 @@ exports.handler = async function handler() {
   try {
     const data = querystring.stringify({
       token: process.env.SLACK_BOT_TOKEN,
-      channel: process.env.CHANNEL_ID
+      channel: process.env.CHANNEL_ID,
+      oldest: getDateFilter()
     });
     const options = {
       host: "slack.com",
@@ -109,4 +110,10 @@ function getReactionCount(message) {
   }
 
   return reactionCount;
+}
+
+function getDateFilter() {
+  const date = new Date();
+  date.setDate(date.getDate() - process.env.DAYS_FILTER);
+  return (date.getTime() / 1000).toString();
 }
