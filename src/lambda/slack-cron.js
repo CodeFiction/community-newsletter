@@ -1,10 +1,10 @@
 /*
-* required environment variables
-* SLACK_BOT_TOKEN = "xxx"
-* CHANNEL_ID = "xxx"
-* TABLE_NAME = "xxx"
-* DAYS_FILTER = 90
-*/
+ * required environment variables
+ * SLACK_BOT_TOKEN = "xxx"
+ * CHANNEL_IDS = "xxx,xxx"
+ * TABLE_NAME = "xxx"
+ * DAYS_FILTER = 90
+ */
 
 const querystring = require("querystring");
 
@@ -13,46 +13,18 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async function handler() {
   try {
-    const data = querystring.stringify({
-      token: process.env.SLACK_BOT_TOKEN,
-      channel: process.env.CHANNEL_ID,
-      oldest: getDateFilter()
-    });
-    const options = {
-      host: "slack.com",
-      port: 443,
-      method: "POST",
-      path: "/api/conversations.history",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": data.length
-      }
-    };
-    const conversations = JSON.parse(await postRequest(options, data));
-    console.log(conversations);
+    const channelIds = process.env.CHANNEL_IDS.split(",");
 
-    const messages = conversations.messages;
-    for (let i = 0; i < messages.length; i++) {
-      const message = messages[i];
-
-      const links = getLinks(message);
-      if (links.length > 0) {
-        const params = {
-          TableName: process.env.TABLE_NAME,
-          Item: {
-            messageTs: message.ts,
-            text: message.text,
-            links,
-            reactionCount: getReactionCount(message)
-          }
-        };
-        console.log(params);
-
-        await dynamoDb.put(params).promise();
-      }
+    const promises = [];
+    for (let i = 0; i < channelIds.length; i++) {
+      promises.push(syncChannel(channelIds[i]));
     }
+
+    await Promise.all(promises);
+    return true;
   } catch (e) {
     console.log(e);
+    return false;
   }
 };
 
@@ -124,4 +96,45 @@ function getDateFilter() {
   const date = new Date();
   date.setDate(date.getDate() - process.env.DAYS_FILTER);
   return (date.getTime() / 1000).toString();
+}
+
+async function syncChannel(channelId) {
+  const data = querystring.stringify({
+    token: process.env.SLACK_BOT_TOKEN,
+    channel: channelId,
+    oldest: getDateFilter()
+  });
+  const options = {
+    host: "slack.com",
+    port: 443,
+    method: "POST",
+    path: "/api/conversations.history",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Length": data.length
+    }
+  };
+  const conversations = JSON.parse(await postRequest(options, data));
+  console.log(conversations);
+
+  const messages = conversations.messages;
+  for (let i = 0; i < messages.length; i++) {
+    const message = messages[i];
+
+    const links = getLinks(message);
+    if (links.length > 0) {
+      const params = {
+        TableName: process.env.TABLE_NAME,
+        Item: {
+          messageTs: message.ts,
+          text: message.text,
+          links,
+          reactionCount: getReactionCount(message)
+        }
+      };
+      console.log(params);
+
+      await dynamoDb.put(params).promise();
+    }
+  }
 }
