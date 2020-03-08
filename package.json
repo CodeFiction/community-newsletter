@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "build": "mkdir ./terraform/environments/production/build && zip -x \"*.git*\" -r ./terraform/environments/production/build/collect-history-lambda.zip * -x \"*terraform*\" -x \"*.tf\" -qq",
     "deploy-terraform": "./build.sh"
   },
   "keywords": [],
