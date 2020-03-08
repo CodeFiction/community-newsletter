@@ -14,11 +14,21 @@
 
   window.Header = class Header extends React.Component {
     render() {
+      const smallBeta = React.createElement(
+        'small',
+        { className: 'brand--title--small' },
+        '(Beta)'
+      );
       const brand = React.createElement(
         'div',
         { className: 'brand' },
         Logo,
-        React.createElement('span', { className: 'brand--title' }, 'Gündem')
+        React.createElement(
+          'span',
+          { className: 'brand--title' },
+          'Gündem',
+          smallBeta
+        )
       );
       const main = React.createElement('div', { className: 'header' }, brand);
       return main;

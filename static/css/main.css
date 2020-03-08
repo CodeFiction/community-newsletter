@@ -170,6 +170,12 @@ ol.data-list li {
   color: #555;
 }
 
+.brand--title--small {
+  text-transform: lowercase;
+  color: #777;
+  padding-left: 4px;
+}
+
 .sidebar.right {
   background: #444;
   border-left: 2px solid #aaa;
