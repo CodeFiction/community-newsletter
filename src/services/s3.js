@@ -1,5 +1,5 @@
-const S3Client = require("aws-sdk/clients/s3");
-const json2csv = require("json2csv");
+const S3Client = require('aws-sdk/clients/s3');
+const json2csv = require('json2csv');
 
 const s3 = new S3Client({
   accessKeyId: process.env.S3_ACCESS_KEY,

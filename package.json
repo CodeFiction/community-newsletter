@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "mkdir ./terraform/environments/production/build && zip -x \"*.git*\" -r ./terraform/environments/production/build/collect-history-lambda.zip * -x \"*terraform*\" -x \"*.tf\" -qq",
+    "deploy-terraform": "./build.sh"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +18,7 @@
     "express": "^4.17.1",
     "json2csv": "^4.5.4",
     "moment": "^2.24.0",
+    "punycode": "^2.1.1",
     "sprintf-js": "^1.1.2"
   }
 }

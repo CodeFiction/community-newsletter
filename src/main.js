@@ -1,26 +1,27 @@
-require("dotenv").config();
-const SlackService = require("./services/slack");
-const { uploadFiles } = require("./services/s3");
-const sprintf = require("sprintf-js").sprintf;
-const moment = require("moment");
+require('dotenv').config();
+const SlackService = require('./services/slack');
+const { uploadFiles } = require('./services/s3');
+const { getByChannelId } = require('./services/dynamodb');
+const sprintf = require('sprintf-js').sprintf;
+const moment = require('moment');
 
-module.exports.getMessages = async () => {
+module.exports.getMessages = async channelId => {
   const slackService = new SlackService(process.env.SLACK_BOT_TOKEN);
-  const messages = await slackService.getMessagesInLast24Hours(
-    process.env.CHANNEL_ID
-  );
+  let messages = await slackService.getMessagesInLastNDays(channelId, 90);
+  return messages.filter(message => message.hasLink());
+};
 
-  return messages
-    .filter(message => message.hasLink())
-    .sort((msg1, msg2) => (msg1.reactionCount < msg2.reactionCount ? 1 : -1));
+module.exports.getMessagesFromDb = async channelId => {
+  const messages = await getByChannelId(channelId);
+  return messages.Items;
 };
 
 module.exports.uploadMessages = async messages => {
   const fileName = sprintf(
-    "%s-messages.csv",
+    '%s-messages.csv',
     moment()
-      .subtract(1, "days")
-      .format("Y-M-D")
+      .subtract(1, 'days')
+      .format('Y-M-D')
   );
   return await uploadFiles({
     bucket: process.env.S3_BUCKET,

@@ -1,23 +1,35 @@
+const { convertSlackEmojisToPunycode } = require('../utils');
+
 module.exports = class Message {
-    constructor(text, sharer, reactionCount, timestamp) {
-        this.links = [];
-        this.setText(text);
-        this.sharer = sharer;
-        this.reactionCount = reactionCount;
-        this.timestamp = timestamp;
-    }
+  constructor(text, sharer, reactionCount, timestamp, messageId, channelId) {
+    this.links = [];
+    this.setText(text);
+    this.sharer = sharer;
+    this.reactionCount = reactionCount;
+    this.timestamp = timestamp;
+    this.messageId = messageId;
+    this.channelId = channelId;
+  }
 
-    setText(text) {
-        let linkRegex = /<(http[\S]+)>/g;
+  setText(text) {
+    text = convertSlackEmojisToPunycode(text);
 
-        this.text = text.replace(linkRegex, (_, link) => {
-            this.links.push(link);
+    this.text = text
+      .replace(/<(\S+)>/g, (_, match) => {
+        // Remove match if it is a mention
+        if (match.match(/^#|!|@/)) {
+          return '';
+        }
 
-            return link;
-        });
-    }
+        let link = match.split('|')[0];
+        this.links.push(link);
 
-    hasLink() {
-        return this.links.length > 0;
-    }
+        return link;
+      })
+      .trim();
+  }
+
+  hasLink() {
+    return this.links.length > 0;
+  }
 };
