@@ -42,11 +42,11 @@
         className: 'thumbs-icon',
       });
 
-      const reactionCounts = React.createElement(
+      const communityScores = React.createElement(
         'div',
         { className: 'reaction-count' },
         thumbsIcon,
-        this.props.reactionCount
+        this.props.communityScore
       );
 
       // const Avatar = React.createElement(
@@ -101,7 +101,7 @@
           // Avatar,
           UserInfo
         ),
-        reactionCounts
+        communityScores
       );
 
       return React.createElement(
@@ -124,7 +124,7 @@
       messages.forEach(message => {
         messageItems.push(
           React.createElement(MessageItem, {
-            reactionCount: message.reactionCount,
+            communityScore: message.rating,
             text: message.text,
             link: message.links[0],
             timestamp: message.timestamp,

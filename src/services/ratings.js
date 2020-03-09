@@ -1,4 +1,4 @@
-const moment = require("moment");
+const moment = require('moment');
 
 const sortingMethods = {
   default: messages => {
@@ -10,7 +10,7 @@ const sortingMethods = {
     // The DConstant is the most important part of this calculation process.
     // Hence, this was left out for the moment until we understand the
     // significance of this constant in an emprical way.
-    const dConstant = 0;
+    const dConstant = 12;
     const now = moment();
 
     const calculateCommunityScore = msg => {
@@ -18,9 +18,11 @@ const sortingMethods = {
       if (msg.replyUsersCount) {
         commentFactor = msg.replyCount / msg.replyUsersCount;
       }
-      return (
-        (2 * commentFactor + msg.reactionCount) /
-        (dConstant + now.diff(moment(msg.timestamp)))
+      return Math.ceil(
+        ((2 * commentFactor + msg.reactionCount) /
+          (dConstant +
+            Math.floor(now.diff(moment(msg.timestamp)) / 86400000))) *
+          100
       );
     };
 
@@ -39,9 +41,9 @@ const sortingMethods = {
 };
 
 module.exports.sortByRating = (sortingMethod, messages) => {
-  sortingMethod = sortingMethod ? sortingMethod.toLowerCase() : "default";
-  if (typeof sortingMethods[sortingMethod] !== "function") {
-    sortingMethod = "default";
+  sortingMethod = sortingMethod ? sortingMethod.toLowerCase() : 'default';
+  if (typeof sortingMethods[sortingMethod] !== 'function') {
+    sortingMethod = 'default';
   }
   return sortingMethods[sortingMethod](messages);
 };
