@@ -12,7 +12,7 @@ module "newsletter-collect-history-lambda" {
 
   event = {
     type                = "cloudwatch-event"
-    schedule_expression = "rate(24 hours)"
+    schedule_expression = "rate(4 hours)"
   }
 
   environment = {
@@ -40,7 +40,7 @@ module "newsletter-collect-history-lambda-security-channel" {
 
   event = {
     type                = "cloudwatch-event"
-    schedule_expression = "rate(24 hours)"
+    schedule_expression = "rate(4 hours)"
   }
 
   environment = {
@@ -68,7 +68,7 @@ module "newsletter-collect-history-lambda-gaming-channel" {
 
   event = {
     type                = "cloudwatch-event"
-    schedule_expression = "rate(24 hours)"
+    schedule_expression = "rate(4 hours)"
   }
 
   environment = {
@@ -96,7 +96,7 @@ module "newsletter-collect-history-lambda-random-channel" {
 
   event = {
     type                = "cloudwatch-event"
-    schedule_expression = "rate(24 hours)"
+    schedule_expression = "rate(4 hours)"
   }
 
   environment = {
