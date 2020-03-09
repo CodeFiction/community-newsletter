@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require("moment");
 
 const sortingMethods = {
   default: messages => {
@@ -7,13 +7,20 @@ const sortingMethods = {
     );
   },
   hot: messages => {
+    // The DConstant is the most important part of this calculation process.
+    // Hence, this was left out for the moment until we understand the 
+    // significance of this constant in an emprical way.
+    const dConstant = 0;
     const now = moment();
 
+    const calculateCommunityScore = msg =>
+      (2 * (msg.replyCount / msg.replyUsersCount) + msg.reactionCount) /
+      (dConstant + now.diff(moment(msg.timestamp)));
+
     return messages.sort((msg1, msg2) => {
-      const msg1Date = moment(msg1.timestamp);
-      const msg2Date = moment(msg2.timestamp);
-      msg1.rating = msg1.reactionCount / now.diff(msg1Date);
-      msg2.rating = msg2.reactionCount / now.diff(msg2Date);
+      msg1.rating = calculateCommunityScore(msg1);
+      msg2.rating = calculateCommunityScore(msg2);
+
       return msg1.rating < msg2.rating ? 1 : -1;
     });
   },
@@ -25,9 +32,9 @@ const sortingMethods = {
 };
 
 module.exports.sortByRating = (sortingMethod, messages) => {
-  sortingMethod = sortingMethod ? sortingMethod.toLowerCase() : 'default';
-  if (typeof sortingMethods[sortingMethod] !== 'function') {
-    sortingMethod = 'default';
+  sortingMethod = sortingMethod ? sortingMethod.toLowerCase() : "default";
+  if (typeof sortingMethods[sortingMethod] !== "function") {
+    sortingMethod = "default";
   }
   return sortingMethods[sortingMethod](messages);
 };

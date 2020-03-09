@@ -1,13 +1,13 @@
-const { WebClient } = require('@slack/web-api');
-const moment = require('moment');
-const Message = require('../models/message');
+const { WebClient } = require("@slack/web-api");
+const moment = require("moment");
+const Message = require("../models/message");
 
 module.exports = class SlackService {
   constructor(token) {
     this.client = new WebClient(token);
   }
 
-  async getMessagesInLastNDays(channelId, n = 7, unit = 'days') {
+  async getMessagesInLastNDays(channelId, n = 7, unit = "days") {
     let cursor = null;
     let messages = [];
 
@@ -26,20 +26,21 @@ module.exports = class SlackService {
           response.messages.map(async msg => {
             // Commented as we face rate limit by this api call
             // let sharer = await this.getUserRealNameById(msg.user);
-            let reactionCount = !msg.hasOwnProperty('reactions')
+            let reactionCount = !msg.hasOwnProperty("reactions")
               ? 0
               : msg.reactions.reduce(
                   (total, reaction) => total + reaction.count,
                   0
                 );
-            return new Message(
-              msg.text,
-              null,
+            return new Message({
+              text: msg.text,
               reactionCount,
-              msg.ts * 1000,
-              msg.client_msg_id,
-              channelId
-            );
+              timestamp: msg.ts * 1000,
+              messageId: msg.client_msg_id,
+              channelId,
+              replyCount: msg.reply_count || 0,
+              replyUsersCount: msg.reply_users_count || 0
+            });
           })
         ))
       );
