@@ -8,14 +8,21 @@ const sortingMethods = {
   },
   hot: messages => {
     // The DConstant is the most important part of this calculation process.
-    // Hence, this was left out for the moment until we understand the 
+    // Hence, this was left out for the moment until we understand the
     // significance of this constant in an emprical way.
     const dConstant = 0;
     const now = moment();
 
-    const calculateCommunityScore = msg =>
-      (2 * (msg.replyCount / msg.replyUsersCount) + msg.reactionCount) /
-      (dConstant + now.diff(moment(msg.timestamp)));
+    const calculateCommunityScore = msg => {
+      let commentFactor = 0;
+      if (msg.replyUsersCount) {
+        commentFactor = msg.replyCount / msg.replyUsersCount;
+      }
+      return (
+        (2 * commentFactor + msg.reactionCount) /
+        (dConstant + now.diff(moment(msg.timestamp)))
+      );
+    };
 
     return messages.sort((msg1, msg2) => {
       msg1.rating = calculateCommunityScore(msg1);
