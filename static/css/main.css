@@ -154,8 +154,7 @@ ol.data-list li {
 }
 
 .header {
-  margin-top: 1.5rem;
-  margin-bottom: 1.7rem;
+  margin: 1.5rem 0 1.5rem 1.5rem;
 }
 
 .brand {
@@ -242,5 +241,11 @@ a.button {
 @media (min-width: 1800px) {
   .container {
     max-width: 1600px;
+  }
+}
+
+@media (min-width: 576px) {
+  .header {
+    margin: 1.5rem 0;
   }
 }
