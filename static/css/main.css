@@ -249,3 +249,6 @@ a.button {
     margin: 1.5rem 0;
   }
 }
+a.message--content:visited {
+    color: orange;
+}
