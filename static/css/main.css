@@ -28,7 +28,7 @@ h6 {
 }
 
 a {
-  color: #424242;
+  color: #000000;
   text-decoration: none;
   word-wrap: break-word;
 }
@@ -250,5 +250,5 @@ a.button {
   }
 }
 a.message--content:visited {
-    color: orange;
+    color: #b2b2b2;
 }
