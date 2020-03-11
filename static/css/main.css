@@ -28,7 +28,7 @@ h6 {
 }
 
 a {
-  color: #424242;
+  color: #000000;
   text-decoration: none;
   word-wrap: break-word;
 }
@@ -248,4 +248,7 @@ a.button {
   .header {
     margin: 1.5rem 0;
   }
+}
+a.message--content:visited {
+    color: #b2b2b2;
 }
