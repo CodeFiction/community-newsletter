@@ -1,13 +1,39 @@
 (function(window) {
   window.Logo = React.createElement('img', { src: './img/logo.svg' });
 
+  window.RoutingContent = class RoutingContent extends React.Component {
+    render() {
+      return (
+        <ReactRouterDOM.HashRouter>
+          <ReactRouterDOM.Route path="/" exact component={window.MessageList} />
+          <ReactRouterDOM.Route
+            path="/general"
+            component={window.MessageList}
+          />
+          <ReactRouterDOM.Route
+            path="/siber-guvenlik"
+            component={window.SecurityMessageList}
+          />
+          <ReactRouterDOM.Route
+            path="/gaming"
+            component={window.GamingMessageList}
+          />
+          <ReactRouterDOM.Route
+            path="/random"
+            component={window.RandomMessageList}
+          />
+        </ReactRouterDOM.HashRouter>
+      );
+    }
+  };
+
   window.App = class App extends React.Component {
     render() {
-      return React.createElement(
-        'div',
-        { className: 'main-body container' },
-        React.createElement(Header, null),
-        React.createElement(MessageList, null)
+      return (
+        <div className="main-body container">
+          <Header />
+          <RoutingContent />
+        </div>
       );
     }
   };
@@ -112,6 +138,7 @@
       );
     }
   };
+
   window.MessageList = class MessageList extends React.Component {
     constructor(props) {
       super(props);
@@ -149,9 +176,36 @@
     }
 
     componentDidMount() {
-      fetch('https://cf-community-news.herokuapp.com/messages')
+      fetch(
+        `https://cf-community-news.herokuapp.com/messages/${this.channelId ||
+          ''}`
+      )
         .then(response => response.json())
         .then(messages => this.setState({ messages }));
+    }
+  };
+
+  window.SecurityMessageList = class SecurityMessageList extends MessageList {
+    constructor(props) {
+      super(props);
+      this.channelId = 'CTKGFDWKA';
+      this.title = '#Siber Güvenlik Kanalı';
+    }
+  };
+
+  window.GamingMessageList = class GamingMessageList extends MessageList {
+    constructor(props) {
+      super(props);
+      this.channelId = 'CQ01KDCTE';
+      this.title = '#Gaming Kanalı';
+    }
+  };
+
+  window.RandomMessageList = class RandomMessageList extends MessageList {
+    constructor(props) {
+      super(props);
+      this.channelId = 'CKX5L3UTS';
+      this.title = '#Random Kanalı';
     }
   };
 })(window);
