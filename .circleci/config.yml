@@ -13,7 +13,7 @@ references:
     run:
       name: Deploy to AWS bucket
       command: | 
-        yarn --cwd ./client build
+        npm run build --prefix ./client
         aws s3 sync ./client/build s3://$BUCKET_NAME --delete
   invalidate_cloudfront_cache: &invalidate_cloudfront_cache
     run:
