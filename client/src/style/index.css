@@ -24,7 +24,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--body-bg);
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
   color: var(--body-text);
 }
@@ -62,7 +62,7 @@ a {
 
 .loading-spinner:before {
   padding: 0 5px 0 0;
-  content: url(../img/spinner.svg);
+  content: url(../assets/img/spinner.svg);
   vertical-align: -50%;
 }
 
@@ -144,12 +144,32 @@ a {
 }
 
 .message--link img {
+  width: 16px;
+  height: 16px;
+
   margin-right: 0.5rem;
   transform: translate(0, 2px);
 }
 
 .header {
   margin: 1.5rem 0 1.5rem 1.5rem;
+}
+
+.header--menu-items ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.header--menu-items li {
+  float: left;
+}
+
+.header--menu-items li a {
+  display: block;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none;
 }
 
 .brand {

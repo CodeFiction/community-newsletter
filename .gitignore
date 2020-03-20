@@ -7,3 +7,6 @@ yarn.lock
 coverage
 build
 .deployment.js
+
+*.log
+size-plugin.json

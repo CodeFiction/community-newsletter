@@ -13,8 +13,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
-    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
@@ -25,20 +23,11 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
-      gtag('config', 'UA-87624514-2');
+      gtag("js", new Date());
+      gtag("config", "UA-87624514-2");
     </script>
-    <script src="js/main.js"></script>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      window.onload = function() {
-        ReactDOM.render(
-          React.createElement(App, null),
-          document.getElementById('root')
-        );
-      };
-    </script>
   </body>
 </html>
