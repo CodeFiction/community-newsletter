@@ -2,19 +2,19 @@ import { h } from "preact";
 
 export function MenuItems() {
   return (
-    <div class="header--menu-items">
+    <div class={"header--menu-items"}>
       <ul>
         <li>
-          <a href="#/general">#general</a>
+          <a href="/general">#general</a>
         </li>
         <li>
-          <a href="#/siber-guvenlik">#siber-guvenlik</a>
+          <a href="/siber-guvenlik">#siber-guvenlik</a>
         </li>
         <li>
-          <a href="#/random">#random</a>
+          <a href="/random">#random</a>
         </li>
         <li>
-          <a href="#/gaming">#gaming</a>
+          <a href="/gaming">#gaming</a>
         </li>
       </ul>
     </div>

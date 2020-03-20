@@ -11,8 +11,6 @@ type MessageListProps = {
 export function MessageList({ channelId = "" }: MessageListProps) {
   const [messages, setMessages] = useState([] as Message[]);
   useEffect(() => {
-    console.log("effect");
-
     fetch(`https://cf-community-news.herokuapp.com/messages/${channelId}`)
       .then(response => response.json())
       .then((messages: Message[]) => setMessages(messages));

@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { Route, Router, RouterOnChangeArgs } from "preact-router";
+import { Router, RouterOnChangeArgs } from "preact-router";
 
 import { Header } from "./header";
 import { MessageList } from "./message-list";
@@ -11,20 +11,15 @@ if ((module as any).hot) {
 }
 
 function App() {
-  let currentUrl: string;
-  const handleRoute = (e: RouterOnChangeArgs) => {
-    currentUrl = e.url;
-  };
-
   return (
     <div className="main-body container">
       <Header />
-      <Router onChange={handleRoute}>
-        <MessageList path="/" />
-        <MessageList path="/general" />
-        <MessageList path="/siber-guvenlik" channelId={"CTKGFDWKA"} />
-        <MessageList path="/gaming" channelId={"CQ01KDCTE"} />
-        <MessageList path="/random" channelId={"CKX5L3UTS"} />
+      <Router>
+        <MessageList key="1" path="/" />
+        <MessageList key="1" path="/general" />
+        <MessageList key="3" path="/siber-guvenlik" channelId={"CTKGFDWKA"} />
+        <MessageList key="4" path="/gaming" channelId={"CQ01KDCTE"} />
+        <MessageList key="5" path="/random" channelId={"CKX5L3UTS"} />
       </Router>
     </div>
   );
