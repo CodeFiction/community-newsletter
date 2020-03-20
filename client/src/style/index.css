@@ -24,7 +24,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--body-bg);
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
   color: var(--body-text);
 }
@@ -62,7 +62,7 @@ a {
 
 .loading-spinner:before {
   padding: 0 5px 0 0;
-  content: url(../img/spinner.svg);
+  content: url(../assets/img/spinner.svg);
   vertical-align: -50%;
 }
 
@@ -144,6 +144,9 @@ a {
 }
 
 .message--link img {
+  width: 16px;
+  height: 16px;
+
   margin-right: 0.5rem;
   transform: translate(0, 2px);
 }

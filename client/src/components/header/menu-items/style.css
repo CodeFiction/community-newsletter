@@ -1,0 +1,16 @@
+.header--menu-items ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.header--menu-items li {
+  float: left;
+}
+
+.header--menu-items li a {
+  display: block;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none;
+}
