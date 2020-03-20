@@ -12,7 +12,9 @@ references:
   deploy_to_bucket: &deploy_to_bucket
     run:
       name: Deploy to AWS bucket
-      command: aws s3 sync ./static/ s3://$BUCKET_NAME --delete
+      command: | 
+        yarn --cwd ./client build
+        aws s3 sync ./client/build s3://$BUCKET_NAME --delete
   invalidate_cloudfront_cache: &invalidate_cloudfront_cache
     run:
       name: Invalidate the cache in the environment
