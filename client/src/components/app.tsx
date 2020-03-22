@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { Router, RouterOnChangeArgs } from "preact-router";
+import { Router } from "preact-router";
 
 import { Header } from "./header";
 import { MessageList } from "./message-list";
@@ -20,8 +20,16 @@ function App() {
         <MessageList key="3" path="/siber-guvenlik" channelId={"CTKGFDWKA"} />
         <MessageList key="4" path="/gaming" channelId={"CQ01KDCTE"} />
         <MessageList key="5" path="/random" channelId={"CKX5L3UTS"} />
-        <MessageList key="6" path="/uzaktan-calisanlar" channelId={"C010284QJ1E"} />
-        <MessageList key="7" path="/covid19-haberleri" channelId={"CVB7MGSV7"} />
+        <MessageList
+          key="6"
+          path="/uzaktan-calisanlar"
+          channelId={"C010284QJ1E"}
+        />
+        <MessageList
+          key="7"
+          path="/covid19-haberleri"
+          channelId={"CVB7MGSV7"}
+        />
       </Router>
     </div>
   );

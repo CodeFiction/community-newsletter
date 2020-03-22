@@ -8,6 +8,8 @@
   --gray-dark: #989898;
   --gray-light: #b7b7b7;
   --brand-title: #555;
+  --menu-item: #000;
+  --menu-item-active:#ff944d;
 }
 
 html {
@@ -170,6 +172,16 @@ a {
   text-align: center;
   padding: 6px;
   text-decoration: none;
+  color: var(--menu-item);
+}
+
+.header--menu-items li a:visited {
+  color: var(--menu-item);
+}
+
+.header--menu-items--active {
+  background-color: var(--menu-item-active);
+  border-radius: 0.25em;
 }
 
 .brand {
