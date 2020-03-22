@@ -6,13 +6,14 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>CF Gündem - Beta</title>
     <meta name="description" content="" />
     <link
       href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap&subset=latin-ext"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
@@ -26,8 +27,9 @@
       gtag("js", new Date());
       gtag("config", "UA-87624514-2");
     </script>
+    <% preact.headEnd %>
   </head>
   <body>
-    <div id="root"></div>
+    <% preact.bodyEnd %>
   </body>
 </html>
