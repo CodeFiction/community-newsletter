@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "short_name": "client",
+  "name": "CF Gündem - Beta",
+  "short_name": "CF Gündem - Beta",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
