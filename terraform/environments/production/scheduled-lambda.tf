@@ -109,3 +109,60 @@ module "newsletter-collect-history-lambda-random-channel" {
     }
   }
 }
+
+module "newsletter-collect-history-lambda-remote-workers-channel" {
+  source           = "spring-media/lambda/aws"
+  version          = "5.1.0"
+  filename         = "${path.module}/build/collect-history-lambda.zip"
+  function_name    = "CollectHistoryRemoteWorking"
+  handler          = "collectHistoryFunction.index"
+  runtime          = "nodejs10.x"
+  source_code_hash = filebase64sha256("${path.module}/build/collect-history-lambda.zip")
+  publish          = true
+  timeout          = 15
+  memory_size      = 256
+
+  event = {
+    type                = "cloudwatch-event"
+    schedule_expression = "rate(4 hours)"
+  }
+
+  environment = {
+    variables = {
+      SLACK_BOT_TOKEN      = var.slack_bot_token
+      CHANNEL_ID           = "C010284QJ1E"
+      S3_ACCESS_KEY        = var.s3_access_key
+      S3_SECRET_ACCESS_KEY = var.s3_secret_access_key
+      S3_BUCKET            = var.s3_bucket
+    }
+  }
+}
+
+
+module "newsletter-collect-history-lambda-covid-channel" {
+  source           = "spring-media/lambda/aws"
+  version          = "5.1.0"
+  filename         = "${path.module}/build/collect-history-lambda.zip"
+  function_name    = "CollectHistoryCovidNews"
+  handler          = "collectHistoryFunction.index"
+  runtime          = "nodejs10.x"
+  source_code_hash = filebase64sha256("${path.module}/build/collect-history-lambda.zip")
+  publish          = true
+  timeout          = 15
+  memory_size      = 256
+
+  event = {
+    type                = "cloudwatch-event"
+    schedule_expression = "rate(4 hours)"
+  }
+
+  environment = {
+    variables = {
+      SLACK_BOT_TOKEN      = var.slack_bot_token
+      CHANNEL_ID           = "CVB7MGSV7"
+      S3_ACCESS_KEY        = var.s3_access_key
+      S3_SECRET_ACCESS_KEY = var.s3_secret_access_key
+      S3_BUCKET            = var.s3_bucket
+    }
+  }
+}
