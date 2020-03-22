@@ -29,15 +29,12 @@ export function MessageItem({
           {communityScore}
         </div>
       </div>
-      <a
-        href="https://codefiction.tech/episodes/mikroservis-donusum-macerasi"
-        class="message--content"
-      >
+      <a href={link} class="message--content">
         {hasText ? text : link}
 
         {hasText && (
           <div class="message--link">
-            <img src="../../assets/img/external-link.svg"/>
+            <img src="../../assets/img/external-link.svg" />
             {link}
           </div>
         )}
