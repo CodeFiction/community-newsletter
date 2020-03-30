@@ -12,7 +12,7 @@ app.get('/messages/:channelId?', async (req, res) => {
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
   );
-  const channelId = req.params.channelId || process.env.CHANNEL_ID;
+  const channelId = req.params.channelId || '';
   const messages = await getMessagesFromDb(channelId);
   return res
     .json(await sortByRating(req.query.sortby || 'HOT', messages))

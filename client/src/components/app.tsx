@@ -16,7 +16,7 @@ function App() {
       <Header />
       <Router>
         <MessageList key="1" path="/" />
-        <MessageList key="1" path="/general" />
+        <MessageList key="1" path="/general" channelId={"C0MFTF0Q4"} />
         <MessageList key="3" path="/siber-guvenlik" channelId={"CTKGFDWKA"} />
         <MessageList key="4" path="/gaming" channelId={"CQ01KDCTE"} />
         <MessageList key="5" path="/random" channelId={"CKX5L3UTS"} />
