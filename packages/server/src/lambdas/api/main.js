@@ -1,7 +1,7 @@
 require('dotenv').config();
-const SlackService = require('./services/slack');
-const { uploadFiles } = require('./services/s3');
-const { getByChannelId } = require('./services/dynamodb');
+const SlackService = require('../../../../common/src/services/slack');
+const { uploadFiles } = require('../../../../common/src/services/s3');
+const { getByChannelId } = require('../../../../common/src/services/dynamodb');
 const sprintf = require('sprintf-js').sprintf;
 const moment = require('moment');
 

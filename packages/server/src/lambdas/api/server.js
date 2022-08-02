@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const { getMessagesFromDb } = require('./src/main');
-const { sortByRating } = require('./src/services/ratings');
+const { getMessagesFromDb } = require('./main');
+const { sortByRating } = require('../../../../common/src/services/ratings');
 
 const app = express();
 app.set('port', process.env.PORT || 4000);

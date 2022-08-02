@@ -1,5 +1,5 @@
-const { put } = require('./src/services/dynamodb');
-const { getMessages } = require('./src/main');
+const { put } = require('../../../../common/src/services/dynamodb');
+const { getMessages } = require('../api/main');
 
 module.exports.index = async () => {
   try {
