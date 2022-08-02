@@ -1,8 +1,24 @@
 {
-  "name": "@community-newsletter-v2/server",
+  "name": "community-newsletter",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "proxy": "http://localhost:8080"
+  "scripts": {
+    "start": "node server.js",
+    "build": "mkdir ./terraform/environments/production/build && zip -x \"*.git*\" -r ./terraform/environments/production/build/collect-history-lambda.zip * -x \"*terraform*\" -x \"*.tf\" -qq",
+    "deploy-terraform": "./build.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "^5.7.0",
+    "aws-sdk": "^2.625.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "json2csv": "^4.5.4",
+    "moment": "^2.24.0",
+    "punycode": "^2.1.1",
+    "sprintf-js": "^1.1.2"
+  }
 }
