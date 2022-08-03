@@ -1,14 +1,14 @@
 {
-  "name": "@community-newsletter/common",
+  "name": "common",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@slack/web-api": "^5.7.0",
     "@aws-sdk/client-dynamodb": "^3.76.0",
     "@aws-sdk/lib-dynamodb": "^3.58.0",
+    "@slack/web-api": "^5.7.0",
     "nanoid": "^3.3.2",
     "source-map-support": "^0.5.21"
   },
