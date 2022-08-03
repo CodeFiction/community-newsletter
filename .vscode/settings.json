@@ -1,0 +1,7 @@
+{
+    "eslint.workingDirectories": [
+        "packages/server",
+        "packages/common",
+        "packages/client"
+    ]
+}
